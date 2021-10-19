@@ -131,7 +131,7 @@
 {{else}}
 <section class="section features overflow-hidden">
 {{end}}
-  <div class="container-nm">
+  <div class="container-nm" >
     <div class="container">
       <div class="row">
         <div class="col-lg-12" data-aos="fade-up">
@@ -141,15 +141,32 @@
             <!-- <p>{{.description | markdownify}}</p> -->
           </div>
         </div>
+
+        <div class="container">
+          <div class="row justify-content-center">
+            {{with .plans}}
+            {{range .}}
+            <div class="col-lg-4 col-sm-6 px-sm-2 mb-lg-0 mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="0">
+              <div class="pricing-table border-dark position-relative text-center py-4 shadow transition">
+                <span class="h3 badge badge-pill font-weight-medium mb-5 py-2 text-primary">{{.plan_name}}</span>
+                
+                <div class="h2 text-light">{{.price}}<span class="paragraph text-lowercase">{{.period}}</span></div>
+                <!-- <h5 class="mb-4 font-weight-normal text-color">Best for small individuals</h5> -->
+                <hr style="border: 0.1rem dashed #1c1c1c;">
+                <ul class="list-unstyled my-4">
+                  <li class="my-3">{{.description}}</li>
+                </ul>
+              </div>
+            </div>
+            {{end}}
+            {{end}}  
+          </div>
+        </div>
+
       </div>
     </div>
 
-    {{ $.Scratch.Set "counter" 0 }}
-    {{range .plans}}
-    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
-    {{$n := $.Scratch.Get "counter"}}
-
-    {{end}}
+    
 
   </div>
 </section>
@@ -160,9 +177,9 @@
 {{with .Params.download}}
 {{if .enable}}
 {{if .bookmark}}
-<section class="section features overflow-hidden" id="{{.bookmark}}">
+<section class="section features overflow-hidden" id="{{.bookmark}}" style="background-color: #1c1c1c;">
 {{else}}
-<section class="section features overflow-hidden">
+<section class="section features overflow-hidden" style="background-color: #1c1c1c;">
 {{end}}
   <div class="container-nm">
     <div class="container">
@@ -175,14 +192,18 @@
           </div>
         </div>
       </div>
+
+      <div class="row justify-content-center mt-5">
+        {{ $logo:= (add (add `images/` $.Page.Lang) site.Params.download_btn_image) }}
+        {{ if fileExists (add `assets/` $logo) }}
+        {{ $logo:= resources.Get $logo }}
+        <a href="https://www.apple.com">
+          <img width="160px" loading="prelaod" decoding="async" class="img-fluid" height="45" src="{{$logo.RelPermalink}}" alt="{{ site.Title }}" onerror="this.onerror=null;this.src='{{$logo.RelPermalink}}'">
+        </a>
+        {{end}}  
+      </div>
     </div>
 
-    {{ $.Scratch.Set "counter" 0 }}
-    {{range .plans}}
-    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
-    {{$n := $.Scratch.Get "counter"}}
-
-    {{end}}
 
   </div>
 </section>

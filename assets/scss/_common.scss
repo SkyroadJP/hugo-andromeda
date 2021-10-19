@@ -251,7 +251,6 @@ body {
 
 .badge {
   color: $white !important;
-  font-size: 12px;
   font-weight: 600;
   padding: .45em .8em;
   border-radius: 4px;
@@ -585,4 +584,10 @@ a.text-primary:hover {
       margin: 0px;
       color: #888;
       font-size: 90%;
+}
+
+.pricing-table {
+  // background-color: #1c1c1c;
+  border: 1px solid #d7f3e4;
+  border-radius: 15px;
 }
