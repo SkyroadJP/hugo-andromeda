@@ -2,7 +2,12 @@
 
 {{with .Params.banner}}
 
-<section class="banner" data-background="{{.back_image}}" style="background-image: url(&quot;{{.back_image}}&quot;);">
+{{ if fileExists (add `assets/` .back_image) }}
+{{$img:= resources.Get .back_image }}
+<section class="banner" data-background="{{$img.RelPermalink}}" style="background-image: url(&quot;{{$img.RelPermalink}}&quot;);">
+{{else}}
+<section class="banner">
+{{end}}
 
   <div class="container ">
     <div class="col-12 block">
@@ -12,7 +17,7 @@
           <p class="text-black pt-2 pb-3 aos-init aos-animate" data-aos="fade-up" data-aos-delay="1200">blablabla... Golf Vision is the only one you should buy  </p>
           <!-- <a href="https://demo.gethugothemes.com/agico" class="btn btn-primary aos-init aos-animate" data-aos="fade-up"
             data-aos-delay="1400">Download</a> -->
-            <a href="{{.button_link}}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">{{.button}}</a>
+            <a href="{{ site.BaseURL | relLangURL}}/{{.button_link}}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">{{.button}}</a>
         </div>
         <div class="col-lg-5 pl-lg-0 pt-5 pt-lg-0 text-lg-right text-center"><img
             src="https://demo.gethugothemes.com/agico/images/banner/banner-1.png" class="img-fluid aos-init aos-animate"
@@ -61,6 +66,190 @@
 </section> 
 {{end}}
 
+{{with .Params.keyfeatures}}
+{{if .enable}}
+{{if .bookmark}}
+<section class="section features overflow-hidden" id="{{.bookmark}}">
+{{else}}
+<section class="section features overflow-hidden">
+{{end}}
+  <div class="container-nm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" data-aos="fade-up">
+          <div class="section-title text-center">
+            <!-- <p class="text-uppercase">{{.subtitle | markdownify}}</p> -->
+            <h2 class="title">{{.title | markdownify}}</h2>
+            <!-- <p>{{.description | markdownify}}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ $.Scratch.Set "counter" 0 }}
+    {{range .feature_list}}
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+    {{$n := $.Scratch.Get "counter"}}
+
+    {{if .back_color}}
+    <div class="container-nm" style="background-color: {{.back_color}};">
+    {{else}}
+    <div class="container-nm">
+    {{end}}
+      <div class="container">
+        <div class="row justify-content-center align-items-center pb-4 pt-4">
+          <div class="col-lg-5 {{if (modBool $n 2)}} order-md-1 {{end}}" data-aos="fade-up">
+            <div class="section-title mb-0">
+              <p class="text-uppercase">{{.subtitle | markdownify}}</p>
+              <h2 class="title text-break">{{.title | markdownify}}</h2>
+              <p>{{.description | markdownify}}</p>
+            </div>
+          </div>
+          <div class="col-lg-6 mt-3 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+            <div class="pl-0 pl-lg-3">
+              {{ if fileExists (add `assets/` .image) }}
+              {{$img:= resources.Get .image }}
+              {{$img:= $img.Resize "575x"}}
+              <img loading="lazy" decoding="async" class="img-fluid" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$img.RelPermalink}}" alt="Video Thumbnail" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+              {{end}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{end}}
+
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{with .Params.pricing}}
+{{if .enable}}
+{{if .bookmark}}
+<section class="section features overflow-hidden" id="{{.bookmark}}">
+{{else}}
+<section class="section features overflow-hidden">
+{{end}}
+  <div class="container-nm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" data-aos="fade-up">
+          <div class="section-title text-center">
+            <!-- <p class="text-uppercase">{{.subtitle | markdownify}}</p> -->
+            <h2 class="title">{{.title | markdownify}}</h2>
+            <!-- <p>{{.description | markdownify}}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ $.Scratch.Set "counter" 0 }}
+    {{range .plans}}
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+    {{$n := $.Scratch.Get "counter"}}
+
+    {{end}}
+
+  </div>
+</section>
+{{end}}
+{{end}}
+
+
+{{with .Params.download}}
+{{if .enable}}
+{{if .bookmark}}
+<section class="section features overflow-hidden" id="{{.bookmark}}">
+{{else}}
+<section class="section features overflow-hidden">
+{{end}}
+  <div class="container-nm">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12" data-aos="fade-up">
+          <div class="section-title text-center">
+            <!-- <p class="text-uppercase">{{.subtitle | markdownify}}</p> -->
+            <h2 class="title">{{.title | markdownify}}</h2>
+            <!-- <p>{{.description | markdownify}}</p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {{ $.Scratch.Set "counter" 0 }}
+    {{range .plans}}
+    {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+    {{$n := $.Scratch.Get "counter"}}
+
+    {{end}}
+
+  </div>
+</section>
+{{end}}
+{{end}}
+
+{{with .Params.whatsnew}}
+{{if .enable}}
+<section class="section features overflow-hidden">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12" data-aos="fade-up">
+        <div class="section-title text-center">
+          <!-- <p class="text-uppercase">{{.subtitle | markdownify}}</p> -->
+          <h2 class="title">{{.title | markdownify}}</h2>
+          <!-- <p>{{.description | markdownify}}</p> -->
+        </div>
+      </div>
+    </div>
+
+    {{with .whatsnew_blocks}}
+    <div class="row">
+      <div class="col-lg-12" data-aos="fade-left" data-aos-delay="200">
+        <div class="features-carousel swiper-container">
+          <div class="swiper-wrapper align-items-center">
+            {{range .}}
+            <div class="swiper-slide">
+
+              <div class="features-card">
+                <div>
+                  <div class="icon text-primary">
+                    <!-- <i class="{{.image}}"></i> -->
+  
+                    {{ if fileExists (add `assets/` .image) }}
+                        {{$img:= resources.Get .image }}
+                        {{$img_width := $img.Width }}
+        
+                        {{$img_orginal := add (add (string $img_width) "x") " " }}
+                        {{$img_src := ($img.Resize $img_orginal).RelPermalink }}
+        
+                        {{$imgWebp := add (add (string $img_width) "x") " webp" }}
+                        {{$imgWebp_src := ($img.Resize $imgWebp).RelPermalink }}
+                        <img loading="lazy" decoding="async" class="img-fluid" width="{{$img_width}}" height="{{$img.Height}}" src="{{$imgWebp_src}}" alt="Brand Image" onerror="this.onerror=null;this.src='{{$img_src}}'">
+                    {{end}}  
+                  </div>
+                  <div> 
+                    <h3 class="title">{{.title | markdownify}}</h3>
+                    <p class="mb-0">{{.content | markdownify}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{end}}
+          </div>
+
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
+    {{end}}
+  </div>
+</section>
+{{end}}
+{{end}}
+
+
+
 {{with .Params.brands_carousel}}
 {{if .enable}}
 <section class="overflow-hidden">
@@ -94,6 +283,7 @@
 </section>
 {{end}}
 {{end}}
+
 
 {{with .Params.features}}
 {{if .enable}}
