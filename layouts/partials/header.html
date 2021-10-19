@@ -24,7 +24,7 @@
                 <ul class="navbar-nav mx-auto">
 
                   <li class="nav-item {{if .IsHome}}active{{end}}">
-                    <a class="nav-link" href="{{ site.BaseURL | relLangURL }}">Home</a>
+                    <a class="nav-link" href="{{ site.BaseURL | relLangURL }}"> {{T "Home"}}</a>
                   </li>
                   
                   {{ $currentPage := . }}
@@ -38,7 +38,7 @@
                   <li class="nav-item dropdown">
 
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {{ .Name }}
+                      {{ T .Name }}
                     </a>
                     <ul class="dropdown-menu">
                       {{ range .Children }}
@@ -63,6 +63,23 @@
                 </ul>
         
                 <div class="navbar-right">
+                  <div>
+                    {{ $siteLanguages := site.Languages}}
+                    {{ $pageLang := .Page.Lang}}
+                    {{- range .Page.AllTranslations }}
+                    {{ $translation := . }}
+                    {{- range sort $siteLanguages "Weight" "asc" }}
+                    {{- if eq $translation.Lang .Lang }}
+                    {{ if eq $pageLang .Lang}}
+                    <a class="flagselect" href="{{ $translation.Permalink | relURL }}">{{ .Params.languageNameShort }}{{ .Params.languageFlag }}</a>
+                    {{ else }}
+                    <a class="flagnoselect" href="{{ $translation.Permalink | relURL }}">{{ .Params.languageNameShort }}{{ .Params.languageFlag }}</a>
+                    {{ end }}
+                    {{- end }}
+                    {{- end }}
+                    {{- end }}
+                  </div>
+
                   {{ if site.Params.navigation_button.enable }}
                   <a href="{{ site.Params.navigation_button.link | relURL }}" class="btn btn-primary">{{ site.Params.navigation_button.label }}</a>
                   {{ end }}
