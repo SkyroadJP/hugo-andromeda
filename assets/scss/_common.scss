@@ -1,6 +1,6 @@
 body {
-  color: lighten($black, 40%);
-  background-color: $black;
+  color: lighten($white, 85%);
+  background-color: $white;
   font-family: $primary-font;
   font-weight: 400;
   font-size: 15px;
@@ -569,7 +569,7 @@ a.text-primary:hover {
       padding: 0px;
       margin: 0px;
       font-weight: bold;
-      color: $white;
+      color: $black;
       font-size: 90%;
 }
 
@@ -577,6 +577,6 @@ a.text-primary:hover {
   @extend a;
       padding: 0px;
       margin: 0px;
-      color: #666;
+      color: #888;
       font-size: 90%;
 }
