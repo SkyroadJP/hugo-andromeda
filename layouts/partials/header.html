@@ -23,7 +23,7 @@
               <div class="collapse navbar-collapse" id="navHeader">
                 <ul class="navbar-nav mx-auto">
 
-                  <li class="nav-item {{if .IsHome}}active{{end}}">
+                  <li class="nav-item">
                     <a class="nav-link" href="{{ site.BaseURL | relLangURL }}"> {{T "Home"}}</a>
                   </li>
                   
@@ -32,8 +32,10 @@
 
                   {{ $menu_item_url := .URL | absLangURL }}
                   {{ $page_url:= $currentPage.Permalink | absLangURL }}
-                  {{ $active := eq $menu_item_url $page_url}}
-                  
+                  {{ $activeTemp := eq $menu_item_url $page_url}}
+                  {{ $active := $activeTemp}}
+
+                  {{if findRE `^#` .URL}}{{$active = false}}{{end}}
                   {{ if .HasChildren }}
                   <li class="nav-item dropdown">
 
