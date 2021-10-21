@@ -591,3 +591,10 @@ a.text-primary:hover {
   border: 1px solid #d7f3e4;
   border-radius: 15px;
 }
+
+.floating-video {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

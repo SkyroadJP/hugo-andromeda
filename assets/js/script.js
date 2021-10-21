@@ -66,7 +66,7 @@ $(document).ready(function () {
 	function videoInit() {
 		$('.video-play-btn').on('click', function () {
 			var thumbWidth = $(this).siblings('.video-thumb').width();
-			var video = '<div class="embed-responsive embed-responsive-16by9 mx-auto bg-dark" style="max-width:'+ thumbWidth +'px"><iframe class="embed-responsive-item" src="' + $(this).data('src') + '?autoplay=1&amp;modestbranding=1&amp;showinfo=0' + '" allowscriptaccess="always" allow="autoplay"></iframe></div>';
+			var video = '<div class="embed-responsive embed-responsive-16by9 mx-auto bg-dark" style="max-width:'+ thumbWidth +'px"><iframe class="embed-responsive-item" src="' + $(this).data('src') + '?autoplay=1&amp;modestbranding=1&amp;showinfo=0' + '" allowscriptaccess="always" allow="autoplay" allowfullscreen></iframe></div>';
 			$(this).fadeOut(100);
 			$(this).siblings('.video-thumb').replaceWith(video);
 		});

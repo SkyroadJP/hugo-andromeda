@@ -4,9 +4,9 @@
 
 {{ if fileExists (add `assets/` .back_image) }}
 {{$img:= resources.Get .back_image }}
-<section class="banner" data-background="{{$img.RelPermalink}}" style="background-image: url(&quot;{{$img.RelPermalink}}&quot;);">
+<section class="banner video-popup" data-background="{{$img.RelPermalink}}" style="background-image: url(&quot;{{$img.RelPermalink}}&quot;);">
 {{else}}
-<section class="banner">
+<section class="banner video-popup">
 {{end}}
 
   <div class="container ">
@@ -19,9 +19,23 @@
             data-aos-delay="1400">Download</a> -->
             <a href="{{ site.BaseURL | relLangURL}}/{{.button_link}}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">{{.button}}</a>
         </div>
-        <div class="col-lg-5 pl-lg-0 pt-5 pt-lg-0 text-lg-right text-center"><img
+
+        <div class="col-lg-5 pl-lg-0 pt-5 pt-lg-0 text-lg-right text-center has-video-popup">
+          {{if .has_video}}
+              <button type="button" class="video-play-btn" data-src="{{.video_url}}" aria-label="video play"> <i class="las la-play"></i>
+              </button>
+              {{ if fileExists (add `assets/` .video_thumbnail) }}
+              {{$img:= resources.Get .video_thumbnail }}
+              {{$img:= $img.Resize "700x "}}
+              {{$imgWebp:= $img.Resize "700x webp"}}
+              <img loading="lazy" decoding="async" class="img-fluid video-thumb" width="{{$img.Width}}" height="{{$img.Height}}" src="{{$imgWebp.RelPermalink}}" alt="Video Thumbnail" onerror="this.onerror=null;this.src='{{$img.RelPermalink}}'">
+              {{end}}
+          {{end}}
+
+          <!-- <img
             src="https://demo.gethugothemes.com/agico/images/banner/banner-1.png" class="img-fluid aos-init aos-animate"
-            alt="illustration" data-aos="zoom-in" data-aos-delay="1500"></div>
+            alt="illustration" data-aos="zoom-in" data-aos-delay="1500"> -->
+        </div>
       </div>
     </div>
   </div>
