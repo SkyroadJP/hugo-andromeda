@@ -14,7 +14,7 @@
     <div class="row align-items-center justify-content-between">
         <div class="col-lg-7 pl-lg-0 text-center text-lg-left">
           <h1 class="text-black position-relative aos-init aos-animate" data-aos="fade-up" data-aos-delay="1000">{{.title | markdownify}}</h1>
-          <p class="text-black pt-2 pb-3 aos-init aos-animate" data-aos="fade-up" data-aos-delay="1200">blablabla... Golf Vision is the only one you should buy  </p>
+          <p class="text-black pt-2 pb-3 aos-init aos-animate" data-aos="fade-up" data-aos-delay="1200">{{.subtitle | markdownify}}</p>
           <!-- <a href="https://demo.gethugothemes.com/agico" class="btn btn-primary aos-init aos-animate" data-aos="fade-up"
             data-aos-delay="1400">Download</a> -->
             <a href="{{ site.BaseURL | relLangURL}}/{{.button_link}}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="200">{{.button}}</a>
