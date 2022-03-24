@@ -8,10 +8,14 @@
 ######################### site variables ##############################
 # customize your color and font from here.
 [params.variables]
-white = "#000000"
-black = "#FFFFFF"
+white = "#FFFFFF"
+black = "#000000"
 light = "#FAFAFA"
 primary_color = "#37B874"
+theme_color = "#00B469"
+darkTheme_color = "#006E50"
+vividTheme_color = "#64FF5A"
+lightTheme_color = "0FC64D"
 
 # font variable
 h1 = "48px"
